@@ -2,10 +2,9 @@ package com.hxs.ktutils
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsets
 import com.hxs.ktutil.core.device.ScreenUtil
 import com.hxs.ktutil.core.media.VideoUtil
+import com.hxs.ktutils.network.KtNetwork
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +17,13 @@ class MainActivity : AppCompatActivity() {
         VideoUtil.videoBytes(url) {
             println(it)
         }
-
+//        Network.method(Method.GET).url(url).addParameter("name", "zhangsan")
     }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        ScreenUtil.hasNotchInScreen(this)
+    }
+
+
 }
