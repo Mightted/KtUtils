@@ -18,13 +18,13 @@ object KtNetwork {
     }
 
     @JvmStatic
-    fun request(ktRequest: KtRequest): String {
-        return request(ktRequest, String::class.java) ?: ""
+    fun request(ktRequest: KtRequest): Any {
+        return request(ktRequest, String::class.java)
     }
 
 
     @JvmStatic
-    fun <T> request(ktRequest: KtRequest, clazz: Class<T>): T? {
+    fun <T> request(ktRequest: KtRequest, clazz: Class<T>): Any {
         return when (ktRequest.requestMethod) {
             Method.GET -> getRequest(ktRequest, clazz)
             Method.POST -> postRequest(ktRequest, clazz)
@@ -32,27 +32,30 @@ object KtNetwork {
     }
 
     @JvmStatic
-    fun getRequest(ktRequest: KtRequest): String {
-        return getRequest(ktRequest, String::class.java) ?: ""
+    fun getRequest(ktRequest: KtRequest): Any {
+        return getRequest(ktRequest, String::class.java)
     }
 
     @JvmStatic
-    fun <T> getRequest(ktRequest: KtRequest, clazz: Class<T>): T? {
+    fun <T> getRequest(ktRequest: KtRequest, clazz: Class<T>): Any {
         ktRequest.run {
             val request = ktRequest.buildGet()
             ktClient.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) throw throw IOException("Unexpected code $response")
 
-                println(response.body!!.string())
-                return ktJson.fromJson(response.body!!.string(), clazz)
+                return if (clazz.classes != String::class.java) {
+                    ktJson.fromJson(response.body!!.string(), clazz) ?: response.body!!.string()
+                } else {
+                    response.body!!.string()
+                }
             }
         }
     }
 
 
     @JvmStatic
-    fun postRequest(ktRequest: KtRequest): String {
-        return postRequest(ktRequest, String::class.java) ?: ""
+    fun postRequest(ktRequest: KtRequest): Any {
+        return postRequest(ktRequest, String::class.java)
     }
 
     /**
@@ -60,13 +63,17 @@ object KtNetwork {
      * [ktRequest] 请求对象主体
      *
      */
-    private fun <T> postRequest(ktRequest: KtRequest, clazz: Class<T>): T? {
+    private fun <T> postRequest(ktRequest: KtRequest, clazz: Class<T>): Any {
         ktRequest.run {
             val request = ktRequest.buildPost()
             ktClient.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) throw throw IOException("Unexpected code $response")
 
-                return ktJson.fromJson(response.body!!.string(), clazz)
+                return if (clazz != String::class.java) {
+                    ktJson.fromJson(response.body!!.string(), clazz) ?: response.body!!.string()
+                } else {
+                    response.body!!.string()
+                }
             }
         }
     }

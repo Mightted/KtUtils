@@ -11,9 +11,10 @@ data class RequestParams(
     lateinit var file: File
     var isFile: Boolean = false
     fun extra(mediaType: String, file: File) = apply {
-        isFile = true
-        this.mediaType = mediaType
-        this.file = file
-
+        if (file.exists()) {
+            isFile = true
+            this.mediaType = mediaType
+            this.file = file
+        }
     }
 }
