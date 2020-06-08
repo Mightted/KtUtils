@@ -35,12 +35,4 @@ class ProgressRequestWrapper(private var delegate: RequestBody, var onRequestPro
         }
     }
 
-
-//    interface ProgressListener {
-//        fun onRequestProgress(
-//            bytesWritten: Long,
-//            contentLength: Long
-//        )
-//    }
-
 }
