@@ -1,8 +1,11 @@
 package com.hxs.ktutils
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.hxs.ktutil.core.app.AppUtil
 import com.hxs.ktutil.core.device.ScreenUtil
+import com.hxs.ktutil.core.device.WhiteListUtil
 import com.hxs.ktutil.core.media.VideoUtil
 import com.hxs.ktutils.network.KtNetwork
 import com.hxs.ktutils.network.KtRequest
@@ -11,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +47,18 @@ class MainActivity : AppCompatActivity() {
                         }
                 KtNetwork.postRequest(request)
             }
+        }
+
+        btnRequestBatteryOpt.setOnClickListener {
+            if (AppUtil.higherBuildVersion(Build.VERSION_CODES.M)) {
+                if (!WhiteListUtil.isIgnoringBatteryOptimizations(this)) {
+                    WhiteListUtil.requestIgnoreBatteryOptimizations(this)
+                }
+            }
+        }
+
+        btnJumAppPage.setOnClickListener {
+            WhiteListUtil.goWhiteListSetting(this)
         }
     }
 

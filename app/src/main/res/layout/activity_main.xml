@@ -17,4 +17,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnRequestBatteryOpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试请求优化电池设置"
+        app:layout_constraintEnd_toEndOf="@id/btnPress"
+        app:layout_constraintStart_toStartOf="@id/btnPress"
+        app:layout_constraintTop_toBottomOf="@id/btnPress" />
+
+
+    <Button
+        android:id="@+id/btnJumAppPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转应用页面"
+        app:layout_constraintEnd_toEndOf="@id/btnRequestBatteryOpt"
+        app:layout_constraintStart_toStartOf="@id/btnRequestBatteryOpt"
+        app:layout_constraintTop_toBottomOf="@id/btnRequestBatteryOpt" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,13 +8,11 @@ class MoshiAdapter : KtJson {
         val moshi: Moshi = Moshi.Builder().build()
     }
 
-    override fun <T> toJson(obj: T, clazz: Class<T>): String {
-        return moshi.adapter(clazz).toJson(obj)
+    override fun <T> toJson(objects: T, clazz: Class<T>): String {
+        return moshi.adapter(clazz).toJson(objects)
     }
 
-    override fun <T> fromJson(json: String, clazz: Class<T>): T? {
-        return moshi.adapter(clazz).fromJson(json)
+    override fun <T:Any> fromJson(json: String, clazz: Class<T>): Any {
+        return moshi.adapter(clazz).fromJson(json) ?: json
     }
-
-
 }

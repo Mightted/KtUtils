@@ -6,19 +6,11 @@ import android.content.Context
 import android.content.res.Resources
 import android.os.Build
 import android.text.TextUtils
-import java.util.*
+import com.hxs.ktutil.core.device.BRAND.*
 
 object ScreenUtil {
 
     data class NotchState(var hasNotch: Boolean = false, var height: Int = 0)
-
-    private const val HUAWEI = "huawei"
-    private const val XIAOMI = "xiaomi"
-    private const val OPPO = "oppo"
-    private const val VIVO = "vivo"
-    private const val SAMSUNG = "samsung"
-    private const val MEIZU = "meizu"
-
 
     /**
      * 判断屏幕上端是否带有缺口（刘海屏，挖孔屏）
@@ -39,7 +31,7 @@ object ScreenUtil {
 
         } else {
             // 通过其他方式判断是否有刘海屏  目前官方提供有开发文档的就 小米，vivo，华为（荣耀），oppo,三星和魅族
-            return when (Build.MANUFACTURER.toLowerCase(Locale.ROOT)) {
+            return when (HardwareUtil.brand()) {
                 HUAWEI -> hasNotchHw(activity)
                 XIAOMI -> hasNotchXiaoMi(activity)
                 OPPO -> hasNotchOPPO(activity)
@@ -63,7 +55,7 @@ object ScreenUtil {
     /**
      * 判断屏幕是否有圆角
      */
-    private fun hasRoundScreenVIVO(): Boolean {
+    fun hasRoundScreenVIVO(): Boolean {
         return getVIVOFeature(0x8)
     }
 
@@ -124,15 +116,12 @@ object ScreenUtil {
     private fun getMIUINotchHeight(res: Resources): Int {
         // MIUI 10 新增了获取刘海宽和高的方法，需升级至8.6.26开发版及以上版本。
         var resourceId: Int = res.getIdentifier("notch_height", "dimen", "android")
-        return if (resourceId > 0) {
-            resourceId = res.getIdentifier("status_bar_height", "dimen", "android")
+        return if (resourceId == 0) {
             res.getDimensionPixelSize(resourceId)
-
         } else {
             // 如果实在是获取不到刘海屏高度，就使用与其相似的状态栏高度来算吧
             getStatusBarHeight(res)
         }
-
     }
 
 
@@ -165,7 +154,7 @@ object ScreenUtil {
         return try {
 
             val res = context.resources
-            val resId = res.getIdentifier("config_mainBuiltInDisplayCutout", "string", "android");
+            val resId = res.getIdentifier("config_mainBuiltInDisplayCutout", "string", "android")
             val spec = if (resId > 0) res.getString(resId) else null
             val hasNotch = spec != null && !TextUtils.isEmpty(spec)
             NotchState(hasNotch, if (hasNotch) getMIUINotchHeight(context.resources) else 0)
@@ -202,6 +191,7 @@ object ScreenUtil {
     }
 
 
+    @JvmStatic
     fun getStatusBarHeight(res: Resources): Int {
         var statusBarHeight = 0
         val resourceId = res.getIdentifier("status_bar_height", "dimen", "android")

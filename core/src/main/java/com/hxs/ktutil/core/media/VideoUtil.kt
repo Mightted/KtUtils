@@ -25,10 +25,15 @@ object VideoUtil {
         var length = 0
         if (URLUtil.isNetworkUrl(url)) {
             val connection = URL(url).openConnection()
-            connection.connect()
-            if ((connection as HttpURLConnection).responseCode == 200) {
-                length = connection.contentLength
+            try {
+                connection.connect()
+                if ((connection as HttpURLConnection).responseCode == 200) {
+                    length = connection.contentLength
+                }
+            } catch (e:Exception) {
+                println(e.message)
             }
+
         }
         length
     }
