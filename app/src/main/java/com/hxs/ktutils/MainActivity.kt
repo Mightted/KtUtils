@@ -3,8 +3,7 @@ package com.hxs.ktutils
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hxs.ktutil.core.app.AppUtil
-import com.hxs.ktutil.core.device.ScreenUtil
+import com.hxs.ktutil.core.device.HardwareUtil
 import com.hxs.ktutil.core.device.WhiteListUtil
 import com.hxs.ktutil.core.media.VideoUtil
 import com.hxs.ktutils.network.KtNetwork
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnRequestBatteryOpt.setOnClickListener {
-            if (AppUtil.higherBuildVersion(Build.VERSION_CODES.M)) {
+            if (HardwareUtil.higherBuildVersion(Build.VERSION_CODES.M)) {
                 if (!WhiteListUtil.isIgnoringBatteryOptimizations(this)) {
                     WhiteListUtil.requestIgnoreBatteryOptimizations(this)
                 }
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        ScreenUtil.hasNotchInScreen(this)
+//        ScreenUtil.hasNotchInScreen(this)
     }
 
 

@@ -3,15 +3,12 @@ package com.hxs.ktutil.core.app
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.text.TextUtils
 
 
 object AppUtil {
 
     fun getPackageName(context: Context): String = context.packageName
-
-    fun higherBuildVersion(targetVer: Int) = Build.VERSION.SDK_INT >= targetVer
 
 
     /**

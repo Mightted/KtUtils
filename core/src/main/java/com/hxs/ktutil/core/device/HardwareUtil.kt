@@ -7,9 +7,9 @@ object HardwareUtil {
 
     fun brandName(): String = Build.MANUFACTURER
 
-    fun brandName2LowerCase(): String = Build.MANUFACTURER.toLowerCase(Locale.ROOT)
+    fun brandName2LowerCase(): String = brandName().toLowerCase(Locale.ROOT)
 
-    private fun brandName2UpperCase(): String = Build.MANUFACTURER.toUpperCase(Locale.ROOT)
+    private fun brandName2UpperCase(): String = brandName().toUpperCase(Locale.ROOT)
 
     fun brand(): BRAND {
         return try {
@@ -20,8 +20,9 @@ object HardwareUtil {
     }
 
 
-}
+    fun higherBuildVersion(targetVer: Int) = Build.VERSION.SDK_INT >= targetVer
 
+}
 
 enum class BRAND(brandName: String) {
 
