@@ -11,7 +11,16 @@ interface BrandInterface {
      */
     fun hasNotchInScreen(activity: Activity): NotchState
 
-    fun getStatusBarHeight(context: Context):Int
+    /**
+     * 获取状态栏高度
+     */
+    fun getStatusBarHeight(context: Context): Int
+
+
+    /**
+     * 跳转厂商定制的后台白名单管理页面
+     */
+    fun navigate2WhiteListSetting(context: Context)
 }
 
 data class NotchState(var hasNotch: Boolean = false, var height: Int = 0)

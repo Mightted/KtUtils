@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Build
+import com.hxs.ktutil.core.app.AppUtil
 import com.hxs.ktutil.core.device.HardwareUtil
 
 class XiaoMiBrandImpl : CommonBrandImpl() {
@@ -48,5 +49,18 @@ class XiaoMiBrandImpl : CommonBrandImpl() {
             // 如果实在是获取不到刘海屏高度，就使用与其相似的状态栏高度来算吧
             getStatusBarHeight(context)
         }
+    }
+
+    /**
+     * 跳转小米安全中心的自启动管理页面
+     * 操作步骤：授权管理 -> 自启动管理 -> 允许应用自启动
+     */
+    override fun navigate2WhiteListSetting(context: Context) {
+        super.navigate2WhiteListSetting(context)
+        AppUtil.jumpActivity(
+            context,
+            "com.miui.securitycenter",
+            "com.miui.permcenter.autostart.AutoStartManagementActivity"
+        )
     }
 }

@@ -33,4 +33,8 @@ open class CommonBrandImpl : BrandInterface {
         }
         return statusBarHeight
     }
+
+    override fun navigate2WhiteListSetting(context: Context) {
+
+    }
 }

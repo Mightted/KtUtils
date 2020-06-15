@@ -1,8 +1,10 @@
 package com.hxs.ktutil.core.manufacturer
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
 import android.text.TextUtils
+import com.hxs.ktutil.core.app.AppUtil
 import com.hxs.ktutil.core.device.HardwareUtil
 
 class SamsungBrandImpl : CommonBrandImpl() {
@@ -27,6 +29,22 @@ class SamsungBrandImpl : CommonBrandImpl() {
             println(e.message)
             NotchState()
         }
+    }
+
+    /**
+     * 跳转三星智能管理器
+     * 操作步骤：自动运行应用程序 -> 打开应用开关 -> 电池管理 -> 未监视的应用程序 -> 添加应用
+     */
+
+    override fun navigate2WhiteListSetting(context: Context) {
+        super.navigate2WhiteListSetting(context)
+
+        try {
+            AppUtil.jumpActivity(context, "com.samsung.android.sm_cn")
+        } catch (e: java.lang.Exception) {
+            AppUtil.jumpActivity(context, "com.samsung.android.sm")
+        }
+
     }
 
 

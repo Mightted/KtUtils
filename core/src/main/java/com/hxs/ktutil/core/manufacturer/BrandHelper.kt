@@ -5,7 +5,7 @@ import android.content.Context
 import com.hxs.ktutil.core.device.BRAND.*
 import com.hxs.ktutil.core.device.HardwareUtil
 
-object BrandHelper:BrandInterface {
+object BrandHelper : BrandInterface {
     private val brand: BrandInterface by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
         when (HardwareUtil.brand()) {
             HUAWEI -> HuaweiBrandImpl()
@@ -22,5 +22,10 @@ object BrandHelper:BrandInterface {
     override fun hasNotchInScreen(activity: Activity) = brand.hasNotchInScreen(activity)
 
     override fun getStatusBarHeight(context: Context) = brand.getStatusBarHeight(context)
+
+
+    override fun navigate2WhiteListSetting(context: Context) {
+        brand.navigate2WhiteListSetting(context)
+    }
 }
 
