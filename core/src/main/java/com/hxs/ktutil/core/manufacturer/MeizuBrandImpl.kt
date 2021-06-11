@@ -1,7 +1,9 @@
 package com.hxs.ktutil.core.manufacturer
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
+import com.hxs.ktutil.core.app.AppUtil
 import com.hxs.ktutil.core.device.HardwareUtil
 
 class MeizuBrandImpl:CommonBrandImpl() {
@@ -33,5 +35,14 @@ class MeizuBrandImpl:CommonBrandImpl() {
             NotchState()
 
         }
+    }
+
+    /**
+     * 跳转魅族手机管家
+     * 操作步骤：权限管理 -> 后台管理 -> 点击应用 -> 允许后台运行
+     */
+    override fun navigate2WhiteListSetting(context: Context) {
+        super.navigate2WhiteListSetting(context)
+        AppUtil.jumpActivity(context, "com.meizu.safe")
     }
 }

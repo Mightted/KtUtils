@@ -1,7 +1,9 @@
 package com.hxs.ktutil.core.manufacturer
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
+import com.hxs.ktutil.core.app.AppUtil
 import com.hxs.ktutil.core.device.HardwareUtil
 
 class HuaweiBrandImpl : CommonBrandImpl() {
@@ -25,6 +27,28 @@ class HuaweiBrandImpl : CommonBrandImpl() {
         } catch (e: Exception) {
             println(e.message)
             NotchState()
+        }
+    }
+
+    /**
+     * 跳转华为手机管家的启动管理页
+     * 操作步骤：应用启动管理 -> 关闭应用开关 -> 打开允许自启动
+     */
+    override fun navigate2WhiteListSetting(context: Context) {
+        super.navigate2WhiteListSetting(context)
+
+        try {
+            AppUtil.jumpActivity(
+                context,
+                "com.huawei.systemmanager",
+                "com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity"
+            )
+        } catch (e: Exception) {
+            AppUtil.jumpActivity(
+                context,
+                "com.huawei.systemmanager",
+                "com.huawei.systemmanager.optimize.bootstart.BootStartActivity"
+            )
         }
     }
 }

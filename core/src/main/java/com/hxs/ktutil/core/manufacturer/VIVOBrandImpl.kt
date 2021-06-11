@@ -2,7 +2,9 @@ package com.hxs.ktutil.core.manufacturer
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.os.Build
+import com.hxs.ktutil.core.app.AppUtil
 import com.hxs.ktutil.core.device.HardwareUtil
 
 class VIVOBrandImpl:CommonBrandImpl() {
@@ -46,5 +48,16 @@ class VIVOBrandImpl:CommonBrandImpl() {
             println(e.message)
             false
         }
+    }
+
+
+    /**
+     * 跳转VIVO手机管家
+     * 操作步骤：权限管理 -> 自启动 -> 允许应用自启动
+     */
+    override fun navigate2WhiteListSetting(context: Context) {
+        super.navigate2WhiteListSetting(context)
+
+        AppUtil.jumpActivity(context, "com.iqoo.secure")
     }
 }
