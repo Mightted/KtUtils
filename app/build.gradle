@@ -38,4 +38,6 @@ dependencies {
 
     implementation project(':core')
     implementation project(':network')
+    implementation project(':test')
+    implementation project(':file')
 }

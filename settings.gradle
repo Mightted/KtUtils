@@ -1,3 +1,5 @@
+include ':file'
+include ':test'
 rootProject.name='KtUtils'
 include ':app'
 include ':core'

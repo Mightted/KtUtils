@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/windowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="3dp"
+        android:background="@drawable/bg_round_rect_blue"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="3dp"
+        android:textColor="#FFF"
+        android:textSize="14sp"
+        android:text="急加速" />
+
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginVertical="3dp"-->
+    <!--        android:background="@drawable/bg_round_rect_blue"-->
+    <!--        android:paddingHorizontal="10dp"-->
+    <!--        android:paddingVertical="3dp"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="14sp"-->
+    <!--        tools:text="急加速" />-->
+
+
+    <!--    <TextView-->
+    <!--        android:layout_width="24dp"-->
+    <!--        android:layout_height="24dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:background="@drawable/bg_round_rect_blue"-->
+    <!--        android:textSize="14sp" />-->
+
+
+        <View
+            android:id="@+id/dotPoint"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/windowText"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_ring_blue_white" />
+
+</RelativeLayout>

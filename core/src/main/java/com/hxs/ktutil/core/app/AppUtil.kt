@@ -3,6 +3,8 @@ package com.hxs.ktutil.core.app
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.text.TextUtils
 
 
@@ -28,6 +30,19 @@ object AppUtil {
         intent.component = ComponentName(packageName, activityDir)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
+    }
+
+
+    fun toAppSettingPage(context: Context, packageName: String) {
+        Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.parse("package:$packageName")
+        ).apply {
+            addCategory(Intent.CATEGORY_DEFAULT)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }.also { intent ->
+            context.startActivity(intent)
+        }
     }
 
 }
