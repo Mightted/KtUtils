@@ -1,27 +1,23 @@
 package com.hxs.ktutils
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hxs.file.FileUtil
 import com.hxs.ktutil.core.device.HardwareUtil
 import com.hxs.ktutil.core.device.WhiteListUtil
-import com.hxs.ktutil.core.media.VideoUtil
-import com.hxs.ktutils.network.KtNetwork
-import com.hxs.ktutils.network.KtRequest
+import com.hxs.ktutils.core.misc.FileUtil
+import com.hxs.test.SaveExcelActivity
 import com.hxs.test.TestMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
 
 //    val url = "http://172.18.11.152:80/data/uploads/videos/202005/202005281702042340.mp4"
 
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         btnPress.setOnClickListener {
 
-            startActivity(Intent(this, TestMainActivity::class.java))
+            startActivity(Intent(this, SaveExcelActivity::class.java))
 
 //            CoroutineScope(Dispatchers.IO).launch {
 //                val request =

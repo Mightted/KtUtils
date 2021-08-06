@@ -2,8 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hxs.test">
 
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application>
-        <activity android:name=".TestMainActivity"></activity>
+        <activity android:name=".TestMainActivity" />
+        <activity android:name=".SaveExcelActivity" />
     </application>
 
 </manifest>
