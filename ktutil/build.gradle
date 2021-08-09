@@ -45,4 +45,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0'
     implementation "com.squareup.okhttp3:okhttp:4.9.1"
     implementation("com.squareup.moshi:moshi:1.11.0")
+
+    // excel support
+    implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
 }
