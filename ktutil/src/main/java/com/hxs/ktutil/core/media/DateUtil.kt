@@ -126,7 +126,7 @@ object DateUtil {
         return calendar.get(Calendar.YEAR)
     }
 
-    fun get(time: Long = System.currentTimeMillis(), type: Int): Int {
+    fun get(type: Int, time: Long = System.currentTimeMillis()): Int {
         calendar.timeInMillis = time
         return calendar.get(type)
     }
@@ -138,13 +138,25 @@ object DateUtil {
     }
 
     /**
+     * 判断是否是最新的一天
+     */
+    fun isNewestDay(time: Long): Boolean {
+        val curYear = get(Calendar.YEAR)
+        val curDate = get(Calendar.DAY_OF_YEAR)
+        val selectedYear = get(Calendar.YEAR, time)
+        val selectedDate = get(Calendar.DAY_OF_YEAR, time)
+        return (selectedYear - curYear) * 365 + selectedDate - curDate >= 0
+
+    }
+
+    /**
      * 判断是否是最新的一个月
      */
     fun isNewestMonth(time: Long): Boolean {
-        val curYear = get(System.currentTimeMillis(), Calendar.YEAR)
-        val curMonth = get(System.currentTimeMillis(), Calendar.MONTH)
-        val selectedYear = get(time, Calendar.YEAR)
-        val selectedMonth = get(time, Calendar.MONTH)
+        val curYear = get(Calendar.YEAR)
+        val curMonth = get(Calendar.MONTH)
+        val selectedYear = get(Calendar.YEAR, time)
+        val selectedMonth = get(Calendar.MONTH, time)
         return (selectedYear - curYear) * 12 + selectedMonth - curMonth >= 0
 
     }
@@ -154,8 +166,8 @@ object DateUtil {
      * 判断是否是最新的一年
      */
     fun isNewestYear(time: Long): Boolean {
-        val curYear = get(System.currentTimeMillis(), Calendar.YEAR)
-        val selectedYear = get(time, Calendar.YEAR)
+        val curYear = get(Calendar.YEAR)
+        val selectedYear = get(Calendar.YEAR, time)
         return selectedYear >= curYear
     }
 
