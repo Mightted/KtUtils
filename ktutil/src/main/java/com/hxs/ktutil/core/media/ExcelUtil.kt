@@ -14,6 +14,8 @@ import java.io.FileInputStream
 /**
  * Excel操作类，需要引入依赖
  * implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
+ * 拓展：Android 打开office文档
+ * https://blog.csdn.net/T_yoo_csdn/article/details/86590985
  */
 object ExcelUtil {
 
