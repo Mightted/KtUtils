@@ -6,14 +6,14 @@ import java.util.*
 
 object DateUtil {
 
-    val yyMMDDFormat = SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA)
-    val yymmddFormat = SimpleDateFormat("yyyy/MM/dd", Locale.CHINA)
-    val mmDDFormat = SimpleDateFormat("MM月dd日", Locale.CHINA)
-    val yyMMFormat = SimpleDateFormat("yyyy年MM月", Locale.CHINA)
-    val yyFormat = SimpleDateFormat("yyyy年", Locale.CHINA)
+//    val yyMMDDFormat = SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA)
+//    val yymmddFormat = SimpleDateFormat("yyyy/MM/dd", Locale.CHINA)
+//    val mmDDFormat = SimpleDateFormat("MM月dd日", Locale.CHINA)
+//    val yyMMFormat = SimpleDateFormat("yyyy年MM月", Locale.CHINA)
+//    val yyFormat = SimpleDateFormat("yyyy年", Locale.CHINA)
 
-    private val _yyMMFormat = SimpleDateFormat("yyy-MM", Locale.CHINA)
-    private val _yyFormat = SimpleDateFormat("yyy", Locale.CHINA)
+//    private val _yyMMFormat = SimpleDateFormat("yyy-MM", Locale.CHINA)
+//    private val _yyFormat = SimpleDateFormat("yyy", Locale.CHINA)
 
     private val calendar = Calendar.getInstance()
 
@@ -109,17 +109,17 @@ object DateUtil {
 //    }
 
 
-    fun time2YYMMDD(timestamp: Long = System.currentTimeMillis()): String {
-        return yyMMDDFormat.format(Date(timestamp))
-    }
-
-    fun time2YYMM(timestamp: Long = System.currentTimeMillis()): String {
-        return yyMMFormat.format(Date(timestamp))
-    }
-
-    fun time2MMDD(timestamp: Long = System.currentTimeMillis()): String {
-        return mmDDFormat.format(Date(timestamp))
-    }
+//    fun time2YYMMDD(timestamp: Long = System.currentTimeMillis()): String {
+//        return yyMMDDFormat.format(Date(timestamp))
+//    }
+//
+//    fun time2YYMM(timestamp: Long = System.currentTimeMillis()): String {
+//        return yyMMFormat.format(Date(timestamp))
+//    }
+//
+//    fun time2MMDD(timestamp: Long = System.currentTimeMillis()): String {
+//        return mmDDFormat.format(Date(timestamp))
+//    }
 
     fun getYear(time: Long = System.currentTimeMillis()): Int {
         calendar.timeInMillis = time

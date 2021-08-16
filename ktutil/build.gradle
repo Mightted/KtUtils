@@ -48,4 +48,9 @@ dependencies {
 
     // excel support
     implementation group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
+
+    // log support
+    implementation 'com.elvishew:xlog:1.6.1'
+
+    implementation 'com.github.smart-fun:XmlToJson:1.4.4'
 }

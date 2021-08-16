@@ -3,14 +3,28 @@ package com.hxs.ktutil.core.app
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import android.text.TextUtils
+import com.hxs.ktutil.BuildConfig
+import com.hxs.ktutil.KtUtilEntrance
 
 
 object AppUtil {
 
-    fun getPackageName(context: Context): String = context.packageName
+    fun context() = KtUtilEntrance.context()
+
+    fun getPackageName(): String? = context()?.packageName
+
+    fun packageManager():PackageManager? = context()?.packageManager
+
+    fun startActivity(intent: Intent) {
+
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context()?.startActivity(intent)
+
+    }
 
 
     /**
@@ -44,5 +58,10 @@ object AppUtil {
             context.startActivity(intent)
         }
     }
+
+    fun isDebug(): Boolean {
+        return BuildConfig.DEBUG
+    }
+
 
 }

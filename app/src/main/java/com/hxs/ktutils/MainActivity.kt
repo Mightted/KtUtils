@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import com.hxs.ktutil.core.device.HardwareUtil
 import com.hxs.ktutil.core.device.WhiteListUtil

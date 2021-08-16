@@ -26,15 +26,18 @@ object FileUtil {
     }
 
 
-    fun openExcel(context: Context, file: File) {
+    fun openExcel(context: Context, file: File, providerPath: String?) {
 
         val intent = Intent(Intent.ACTION_VIEW)
 
         intent.addCategory(Intent.CATEGORY_DEFAULT)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        val providerPath = "${BuildConfig.LIBRARY_PACKAGE_NAME}.FileProvider"
+//        val providerPath = "${BuildConfig.LIBRARY_PACKAGE_NAME}.FileProvider"
         val uri: Uri
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (providerPath == null) {
+                return
+            }
             uri = FileProvider.getUriForFile(context, providerPath, file)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         } else {
