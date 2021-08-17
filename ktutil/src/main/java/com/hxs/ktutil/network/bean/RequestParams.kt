@@ -1,4 +1,4 @@
-package com.hxs.ktutils.network.bean
+package com.hxs.ktutil.network.bean
 
 import java.io.File
 

@@ -1,11 +1,10 @@
 package com.hxs.ktutil.core.misc
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import androidx.core.content.FileProvider
-import com.hxs.ktutil.BuildConfig
+import com.hxs.ktutil.core.app.AppUtil
 import java.io.File
 
 object FileUtil {
@@ -26,24 +25,18 @@ object FileUtil {
     }
 
 
-    fun openExcel(context: Context, file: File, providerPath: String?) {
+    fun file2Uri(file: File, providerPath: String?, context: Context? = AppUtil.context()): Uri? {
 
-        val intent = Intent(Intent.ACTION_VIEW)
-
-        intent.addCategory(Intent.CATEGORY_DEFAULT)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//        val providerPath = "${BuildConfig.LIBRARY_PACKAGE_NAME}.FileProvider"
-        val uri: Uri
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (providerPath == null) {
-                return
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (providerPath == null || context == null) {
+                return null
             }
-            uri = FileProvider.getUriForFile(context, providerPath, file)
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            FileProvider.getUriForFile(context, providerPath, file)
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         } else {
-            uri = Uri.fromFile(file)
+            Uri.fromFile(file)
         }
-        intent.setDataAndType(uri, "application/vnd.ms-excel")
-        context.startActivity(intent)
     }
+
+
 }

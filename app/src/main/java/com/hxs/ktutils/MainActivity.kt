@@ -2,9 +2,12 @@ package com.hxs.ktutils
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.hxs.ktutil.core.device.HardwareUtil
 import com.hxs.ktutil.core.device.WhiteListUtil
@@ -17,6 +20,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
 //    val url = "http://172.18.11.152:80/data/uploads/videos/202005/202005281702042340.mp4"
+
+    private val launcher = registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) {
+        println(it.toString())
+    }
 
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +75,10 @@ class MainActivity : AppCompatActivity() {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
 //        ScreenUtil.hasNotchInScreen(this)
+    }
+
+    fun toTestMain(view: View) {
+        launcher.launch(Uri.parse("content://com.android.providers.media.documents/document/image"))
     }
 
 

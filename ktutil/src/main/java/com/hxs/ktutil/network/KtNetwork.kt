@@ -1,8 +1,8 @@
-package com.hxs.ktutils.network
+package com.hxs.ktutil.network
 
-import com.hxs.ktutils.network.adapter.KtJson
-import com.hxs.ktutils.network.adapter.MoshiAdapter
-import com.hxs.ktutils.network.bean.Method
+import com.hxs.ktutil.network.adapter.KtJson
+import com.hxs.ktutil.network.adapter.MoshiAdapter
+import com.hxs.ktutil.network.bean.Method
 import okhttp3.OkHttpClient
 import java.io.IOException
 

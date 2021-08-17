@@ -1,8 +1,8 @@
-package com.hxs.ktutils.network
+package com.hxs.ktutil.network
 
 import android.text.TextUtils
-import com.hxs.ktutils.network.bean.Method
-import com.hxs.ktutils.network.bean.RequestParams
+import com.hxs.ktutil.network.bean.Method
+import com.hxs.ktutil.network.bean.RequestParams
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

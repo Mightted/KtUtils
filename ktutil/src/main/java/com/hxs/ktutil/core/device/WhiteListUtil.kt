@@ -10,8 +10,6 @@ import android.os.PowerManager
 import android.provider.Settings
 import androidx.annotation.RequiresApi
 import com.hxs.ktutil.core.app.AppUtil.getPackageName
-import com.hxs.ktutil.core.app.AppUtil.jumpActivity
-import com.hxs.ktutil.core.device.BRAND.*
 import com.hxs.ktutil.core.manufacturer.BrandHelper
 
 
@@ -28,7 +26,7 @@ object WhiteListUtil {
     fun isIgnoringBatteryOptimizations(context: Context): Boolean {
         val isIgnoring: Boolean
         val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
-        isIgnoring = powerManager.isIgnoringBatteryOptimizations(getPackageName(context))
+        isIgnoring = powerManager.isIgnoringBatteryOptimizations(getPackageName())
         return isIgnoring
     }
 
@@ -43,7 +41,7 @@ object WhiteListUtil {
     fun requestIgnoreBatteryOptimizations(context: Context, requestCode: Int = -1) {
         if (!isIgnoringBatteryOptimizations(context)) {
             val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
-            intent.data = Uri.parse("package:" + getPackageName(context))
+            intent.data = Uri.parse("package:" + getPackageName())
             if (context is Activity) {
                 context.startActivityForResult(intent, requestCode)
             } else {
@@ -56,24 +54,6 @@ object WhiteListUtil {
     fun goWhiteListSetting(context: Context) {
         BrandHelper.navigate2WhiteListSetting(context)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

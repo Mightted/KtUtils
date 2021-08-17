@@ -1,4 +1,4 @@
-package com.hxs.ktutils.network
+package com.hxs.ktutil.network
 
 import okhttp3.MediaType
 import okhttp3.RequestBody
